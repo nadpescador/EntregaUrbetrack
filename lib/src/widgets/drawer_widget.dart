@@ -1,5 +1,5 @@
-import 'package:ejercicio_urbetrack/src/providers/login_provider.dart';
-import 'package:ejercicio_urbetrack/src/providers/theme_changer_provider.dart';
+import 'package:ejercicio_urbetrack/src/blocs/login_provider.dart';
+import 'package:ejercicio_urbetrack/src/blocs/theme_changer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +10,7 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final _loginProvider = Provider.of<LoginProvider>(context);
-    //final _theme = Provider.of<ThemeChanger>(context);
+    final _theme         = Provider.of<ThemeChanger>(context);
 
     return Drawer(
         child: ListView(
@@ -26,10 +26,12 @@ class DrawerWidget extends StatelessWidget {
               )),
               ListTile(
                 leading: Icon(Icons.brush),
-                title: Text("DarkMode"),
+                title: Text(_theme.darkLight.toString()),
                 onTap: () {
-                  
-                },
+
+                    _theme.changeDarkAndWhite();
+                
+                }
               ),
               Divider(thickness: 0.5),
               ListTile(

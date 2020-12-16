@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:ejercicio_urbetrack/src/providers/login_provider.dart';
+import 'package:ejercicio_urbetrack/src/blocs/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
         position: _offsetAnimation,
           child: FadeTransition(
             opacity: _controller,
-            child: Image.asset('lib/src/resources/assets/images/urbelogo.png'),
+            child: Image.asset('assets/images/urbelogo.png'),
           )
         ),
       );
