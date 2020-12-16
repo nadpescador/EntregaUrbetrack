@@ -1,5 +1,6 @@
 import 'package:ejercicio_urbetrack/src/providers/home_provider.dart';
 import 'package:ejercicio_urbetrack/src/providers/login_provider.dart';
+import 'package:ejercicio_urbetrack/src/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'src/pages/home_page.dart';
@@ -12,6 +13,9 @@ void main(){
 }
 
 class MyApp extends StatelessWidget {
+
+final theme = ThemeChanger(ThemeData.dark());
+
   @override
   Widget build (BuildContext context){
     return  MultiProvider(
@@ -20,7 +24,9 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginProvider()),
         ChangeNotifierProvider(
           create: (context)=> HomeProvider()),
-      ],
+        ChangeNotifierProvider(
+          create: (context)=> ThemeChanger(ThemeData.dark())
+        )],
           child: MaterialApp(
           home: LoginPage(),
           debugShowCheckedModeBanner: false,
@@ -28,9 +34,7 @@ class MyApp extends StatelessWidget {
             'login' : (BuildContext context) => LoginPage(),
             'home'  : (BuildContext context) => HomePage(),
           },
-          theme: ThemeData(
-            primaryColor: Colors.deepPurple,
-          )
+          theme: theme.getIsDarkTheme?ThemeData.dark():ThemeData.light()
       ),
     );
   }

@@ -41,7 +41,7 @@ class LoginProvider with ChangeNotifier {
     if(password=="123456"){
       _password=LoginValidationModel(password, null);
     } else {
-      _password=LoginValidationModel(null, "Password incorrecto, pruebe nuevamente.");
+      _password=LoginValidationModel(password, "Password incorrecto, pruebe nuevamente.");
     }
     notifyListeners();
   }
@@ -68,19 +68,4 @@ class LoginProvider with ChangeNotifier {
   }
 
 
-  //DISABLE BACKBUTTON
-  Future<bool> backPressed(context){
-    return showDialog(
-      context: context,
-      builder: (context)=>AlertDialog(
-        title: Text("No se puede volver."),
-        actions: <Widget> [
-          FlatButton(
-            onPressed: ()=> Navigator.pop(context, false),
-           child: Text("Aceptar"))
-        ],
-      )
-
-    );
-  }
 }

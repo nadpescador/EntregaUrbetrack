@@ -1,4 +1,5 @@
 import 'package:ejercicio_urbetrack/src/providers/login_provider.dart';
+import 'package:ejercicio_urbetrack/src/providers/theme_changer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,7 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final _loginProvider = Provider.of<LoginProvider>(context);
+    //final _theme = Provider.of<ThemeChanger>(context);
 
     return Drawer(
         child: ListView(
@@ -23,13 +25,18 @@ class DrawerWidget extends StatelessWidget {
                 ],
               )),
               ListTile(
+                leading: Icon(Icons.brush),
                 title: Text("DarkMode"),
+                onTap: () {
+                  
+                },
               ),
               Divider(thickness: 0.5),
               ListTile(
+                leading: Icon(Icons.vpn_key),
                 title: Text("Salir de la app"),
                 onTap: () {
-                  Navigator.pushNamed(context, 'login');
+                  Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
                   _loginProvider.clearPassword();
                   _loginProvider.clearSuccesfullLogin();
                   _loginProvider.clearUsername();

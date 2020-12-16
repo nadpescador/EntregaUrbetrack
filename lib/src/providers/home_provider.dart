@@ -18,5 +18,20 @@ class HomeProvider with ChangeNotifier {
 
   }
 
+  //DISABLE BACKBUTTON
+  Future<bool> backPressed(context){
+    return showDialog(
+      context: context,
+      builder: (context)=>AlertDialog(
+        title: Text("No se puede volver."),
+        actions: <Widget> [
+          FlatButton(
+            onPressed: ()=> Navigator.pop(context, false),
+           child: Text("Aceptar"))
+        ],
+      )
+
+    );
+  }
 
 }

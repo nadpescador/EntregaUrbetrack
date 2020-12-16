@@ -54,6 +54,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
 
   final loginProvider = Provider.of<LoginProvider>(context); 
+  print(loginProvider.getUsername.value);
+  print(loginProvider.getPassword.value);
+  print(loginProvider.getSuccesfullLogin);
 
     return Scaffold(
       body: SafeArea(

@@ -13,20 +13,22 @@ import 'package:provider/provider.dart';
       
       final homeProvider = Provider.of<HomeProvider>(context);
       final loginProvider = Provider.of<LoginProvider>(context);
-      loginProvider.setPassword(null);
       homeProvider.dataLorem();
       
 
       return WillPopScope(
-        onWillPop: () => loginProvider.backPressed(context),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("Urbetrack APP"),
+        onWillPop: () => homeProvider.backPressed(context),
+        child: SafeArea(
+          minimum: EdgeInsets.only(top: 35),
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text("Urbetrack APP"),
+            ),
+            body: Center(
+              child: Text("Bienvenido, ${loginProvider.getUsername.value}")
+            ),
+            drawer: DrawerWidget(),
           ),
-          body: Center(
-            child: Text("Santiago")
-          ),
-          drawer: DrawerWidget(),
         ),
       );
     }
