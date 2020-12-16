@@ -19,7 +19,7 @@ class LoginProvider with ChangeNotifier {
     if(username.length >= 3){
       _username=LoginValidationModel(username,null);
     } else {
-      _username=LoginValidationModel(null, "El nombre debe tener mas de 3 letras");
+      _username=LoginValidationModel(null, "El nombre debe tener al menos 3 letras");
     }
     notifyListeners();
   }

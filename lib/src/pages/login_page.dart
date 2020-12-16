@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ejercicio_urbetrack/src/providers/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -86,44 +88,49 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   Widget _loginForm(loginProvider){
     return  FadeTransition(
       opacity: _formController,
-          child: Container(
-            alignment: Alignment.center,
-            height: 370,
-            width: 330,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: 2,
-                  blurRadius: 11,
-                )
-              ],
-              borderRadius: BorderRadius.circular(5)
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 5,
+              sigmaY: 5,
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("Logueo de usuario", style: TextStyle(fontSize: 20, color: Colors.deepPurple)),
-                  _nameForm(loginProvider),
-                  _passwordForm(),
-                  _loginButton(loginProvider),
-            ],
-          ),
+              child: Container(
+              alignment: Alignment.center,
+              height: 370,
+              width: 330,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 2,
+                    blurRadius: 11,
+                  )
+                ],
+                borderRadius: BorderRadius.circular(5)
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("Logueo de usuario", style: TextStyle(fontSize: 20, color: Colors.deepPurple)),
+                    _nameForm(loginProvider),
+                    _passwordForm(loginProvider),
+                    _loginButton(loginProvider),
+              ],
+            ),
         ),
       ),
+          ),
     );
   }
 
   Widget _nameForm(loginProvider) {
-    final loginProvider = Provider.of<LoginProvider>(context);
     return Container(
       padding: EdgeInsets.all(20.0),
       child: TextField(
         onChanged: (value) => {
           loginProvider.setUsername(value)
         },
-        maxLength: 15,
+        maxLength: 10,
         decoration: InputDecoration(
           labelText: "Usuario",
           hintText: "Santiago",
@@ -135,8 +142,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
     );  
   }
 
-  Widget _passwordForm(){
-        final loginProvider = Provider.of<LoginProvider>(context);
+  Widget _passwordForm(loginProvider){
         return Container(
           padding: EdgeInsets.all( 20.0),
           child: TextField(
@@ -159,15 +165,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   }
 
   Widget _loginButton(loginProvider){
-      final loginProvider = Provider.of<LoginProvider>(context);
-
            return FlatButton(
             onPressed: () {
                 loginProvider.validatePassword(loginProvider.getPassword.value);
-
-                loginProvider.getSuccesfullLogin&&loginProvider.getUsername.value!=null?Navigator.pushNamed(context, 'home'):null;
+                loginProvider.getSuccesfullLogin==true&&loginProvider.getUsername.value!=null?Navigator.pushNamed(context, 'home'):null;
               },
-            
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -177,9 +179,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
               child: Text("LOGIN", style: TextStyle(color: Colors.white),),
       ));
       }
-   
 
-   
   }
 
 
