@@ -9,15 +9,16 @@ String _darkLight = "Light";
 
 ThemeChanger(this._themeData, this._darkLight);
 
-ThemeData get getTheme {
+  getTheme () {
   return _themeData;
 }
 
 void setTheme(ThemeData data){
   _themeData = data;
+  notifyListeners();
 }
 
-  void changeDarkAndWhite(){
+  void changeDarkAndWhite(context){
      if(_themeData == ThemeData.light()){
          _themeData = ThemeData.dark();
          _darkLight = "Dark";

@@ -12,6 +12,10 @@ class ImagesModel {
       String get id => _id;
       String get author => _author;
       String get downloadUrl => _downloadUrl;
+      int get width => _width;
+      int get height => _height;
+      String get url => _url;
+
 
       ImagesModel({String id, String author, String downloadUrl, int width, int height, String url}){
         this._id = id;

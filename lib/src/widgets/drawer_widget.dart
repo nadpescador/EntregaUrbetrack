@@ -29,10 +29,11 @@ class DrawerWidget extends StatelessWidget {
                 title: Text(_theme.darkLight.toString()),
                 onTap: () {
 
-                    _theme.changeDarkAndWhite();
+                    _theme.changeDarkAndWhite(context);
                 
                 }
               ),
+              
               Divider(thickness: 0.5),
               ListTile(
                 leading: Icon(Icons.vpn_key),
@@ -42,6 +43,7 @@ class DrawerWidget extends StatelessWidget {
                   _loginProvider.clearPassword();
                   _loginProvider.clearSuccesfullLogin();
                   _loginProvider.clearUsername();
+                  //_theme.setTheme(ThemeData.light());
                   
                 } 
               ),

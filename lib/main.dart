@@ -19,23 +19,32 @@ final theme = ThemeChanger(ThemeData(), "Dark");
   @override
   Widget build (BuildContext context){
     return  MultiProvider(
+      child:  MaterialAppTheme(),
       providers: [
         ChangeNotifierProvider(
           create: (context) => LoginProvider()),
         ChangeNotifierProvider(
           create: (context)=> HomeProvider()),
         ChangeNotifierProvider(
-          create: (context)=> ThemeChanger(ThemeData(), "Light"))
-        ],
-          child: MaterialApp(
-          home: LoginPage(),
-          debugShowCheckedModeBanner: false,
-          routes: {
-            'login' : (BuildContext context) => LoginPage(),
-            'home'  : (BuildContext context) => HomePage(),
-          },
-          theme: theme.getTheme,
-      ),
-    );
+          create: (_)=> ThemeChanger(ThemeData.light(), "Light"),)
+        ],);
   }
 }
+  
+  class MaterialAppTheme extends StatelessWidget{
+      @override
+        Widget build(BuildContext context) {
+
+          final theme = Provider.of<ThemeChanger>(context);
+
+            return MaterialApp(
+                home: LoginPage(),
+                debugShowCheckedModeBanner: false,
+                routes: {
+                  'login' : (BuildContext context) => LoginPage(),
+                  'home'  : (BuildContext context) => HomePage(),
+                },
+            theme: theme.getTheme(),
+            );
+        }
+  }
