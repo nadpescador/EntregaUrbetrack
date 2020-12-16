@@ -1,3 +1,4 @@
+import 'package:ejercicio_urbetrack/src/providers/home_provider.dart';
 import 'package:ejercicio_urbetrack/src/providers/login_provider.dart';
 import 'package:ejercicio_urbetrack/src/resources/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +10,24 @@ import 'package:provider/provider.dart';
     @override
     Widget build(BuildContext context) {
 
+      
+      final homeProvider = Provider.of<HomeProvider>(context);
       final loginProvider = Provider.of<LoginProvider>(context);
       loginProvider.setPassword(null);
+      homeProvider.dataLorem();
+      
 
-      return Scaffold(
-        appBar: AppBar(
-          title: Text("Urbetrack APP"),
+      return WillPopScope(
+        onWillPop: () => loginProvider.backPressed(context),
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Urbetrack APP"),
+          ),
+          body: Center(
+            child: Text("Santiago")
+          ),
+          drawer: DrawerWidget(),
         ),
-        body: Center(
-          child: Text(loginProvider.getUsername.value),
-        ),
-        drawer: DrawerWidget(),
       );
     }
   }

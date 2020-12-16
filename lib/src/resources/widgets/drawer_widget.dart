@@ -30,6 +30,9 @@ class DrawerWidget extends StatelessWidget {
                 title: Text("Salir de la app"),
                 onTap: () {
                   Navigator.pushNamed(context, 'login');
+                  _loginProvider.clearPassword();
+                  _loginProvider.clearSuccesfullLogin();
+                  _loginProvider.clearUsername();
                   
                 } 
               ),

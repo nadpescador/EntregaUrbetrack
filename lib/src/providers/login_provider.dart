@@ -15,6 +15,10 @@ class LoginProvider with ChangeNotifier {
     return _username;
   }
 
+  void clearUsername(){
+    _username=LoginValidationModel(null, null);
+  }
+
   void setUsername(String username){
     if(username.length >= 3){
       _username=LoginValidationModel(username,null);
@@ -29,6 +33,10 @@ class LoginProvider with ChangeNotifier {
     return _password;
   }
 
+  void clearPassword(){
+    _password=LoginValidationModel(null,null);
+  }
+
    void setPassword(String password){
     if(password=="123456"){
       _password=LoginValidationModel(password, null);
@@ -41,6 +49,11 @@ class LoginProvider with ChangeNotifier {
 
 
 //VALIDATE LOGIN
+
+  void clearSuccesfullLogin(){
+    _succesfullLogin=false;
+  }
+
   void validatePassword(String password){
     if (password == "123456"){
       _succesfullLogin = true;
@@ -52,5 +65,22 @@ class LoginProvider with ChangeNotifier {
 
   get getSuccesfullLogin {
     return _succesfullLogin;
+  }
+
+
+  //DISABLE BACKBUTTON
+  Future<bool> backPressed(context){
+    return showDialog(
+      context: context,
+      builder: (context)=>AlertDialog(
+        title: Text("No se puede volver."),
+        actions: <Widget> [
+          FlatButton(
+            onPressed: ()=> Navigator.pop(context, false),
+           child: Text("Aceptar"))
+        ],
+      )
+
+    );
   }
 }

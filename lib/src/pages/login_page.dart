@@ -127,8 +127,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
     return Container(
       padding: EdgeInsets.all(20.0),
       child: TextField(
-        onChanged: (value) => {
-          loginProvider.setUsername(value)
+        onChanged: (username) => {
+          loginProvider.setUsername(username)
         },
         maxLength: 10,
         decoration: InputDecoration(
@@ -148,8 +148,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
           child: TextField(
             obscureText: true,
             maxLength: 10,
-            onChanged: (value) => {
-              loginProvider.setPassword(value)             
+            onChanged: (password) => {
+              loginProvider.setPassword(password)             
             },
             decoration: InputDecoration(
               labelText: "Password",
@@ -165,10 +165,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   }
 
   Widget _loginButton(loginProvider){
+    final loginProvider = Provider.of<LoginProvider>(context);
            return FlatButton(
             onPressed: () {
                 loginProvider.validatePassword(loginProvider.getPassword.value);
-                loginProvider.getSuccesfullLogin==true&&loginProvider.getUsername.value!=null?Navigator.pushNamed(context, 'home'):null;
+                if(loginProvider.getSuccesfullLogin==true&&loginProvider.getUsername.value!=null){
+                  Navigator.pushNamed(context, 'home');
+                } 
               },
             child: Container(
               padding: EdgeInsets.all(10),
