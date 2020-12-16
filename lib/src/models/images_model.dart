@@ -15,7 +15,5 @@ class Images {
           this.url,
           this.downloadUrl,
         });
-
-
 }
     

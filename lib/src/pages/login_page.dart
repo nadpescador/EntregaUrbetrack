@@ -1,5 +1,6 @@
-import 'package:ejercicio_urbetrack/src/blocs/provider.dart';
+import 'package:ejercicio_urbetrack/src/providers/login_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   AnimationController _controller;
   AnimationController _formController;
   Animation<Offset> _offsetAnimation;
+  
 
 
   @override
@@ -48,6 +50,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
+
+  final loginProvider = Provider.of<LoginProvider>(context); 
+
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -55,7 +60,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
           child: Stack(
             alignment: Alignment.center,
             children: [
-              _loginForm(),
+              _loginForm(loginProvider),
               _logoAnimated(),
             ],
           ),
@@ -78,10 +83,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
       );
   }
 
-  Widget _loginForm(){
-
-   final _bloc = Provider.of(context);
-
+  Widget _loginForm(loginProvider){
     return  FadeTransition(
       opacity: _formController,
           child: Container(
@@ -103,9 +105,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
               child: Column(
                 children: [
                   Text("Logueo de usuario", style: TextStyle(fontSize: 20, color: Colors.deepPurple)),
-                  _nameForm(_bloc),
-                  _passwordForm(_bloc),
-                  _loginButton(_bloc),
+                  _nameForm(loginProvider),
+                  _passwordForm(),
+                  _loginButton(loginProvider),
             ],
           ),
         ),
@@ -113,65 +115,59 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
     );
   }
 
-  Widget _nameForm(_bloc) {
-    return StreamBuilder(
-      stream: _bloc.usernameString,
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-           return Container(
+  Widget _nameForm(loginProvider) {
+    final loginProvider = Provider.of<LoginProvider>(context);
+    return Container(
       padding: EdgeInsets.all(20.0),
       child: TextField(
+        onChanged: (value) => {
+          loginProvider.setUsername(value)
+        },
         maxLength: 15,
         decoration: InputDecoration(
-          errorText: snapshot.error,
           labelText: "Usuario",
           hintText: "Santiago",
+          errorText:  loginProvider.getUsername.error,
           icon: Icon(Icons.account_circle, color: Colors.deepPurple[300]),
           focusColor: Colors.blue
         ),
-        onChanged: _bloc.addUsername,
       ),
-    );
-      },
-    );
-
-
-   
+    );  
   }
 
-  Widget _passwordForm(_bloc){
-
-    return StreamBuilder(
-      stream: _bloc.passwordStream,
-      builder: (context, snapshot) {
+  Widget _passwordForm(){
+        final loginProvider = Provider.of<LoginProvider>(context);
         return Container(
           padding: EdgeInsets.all( 20.0),
           child: TextField(
             obscureText: true,
             maxLength: 10,
+            onChanged: (value) => {
+              loginProvider.setPassword(value)             
+            },
             decoration: InputDecoration(
-              counterText: snapshot.data,
               labelText: "Password",
               hintText: "123456",
-              errorText: snapshot.error,
+              errorText: loginProvider.getPassword.error,
               icon: Icon(Icons.lock, color: Colors.deepPurple[300]),
               focusColor: Colors.blue
             ),
-            onChanged: _bloc.addPassword,
           ),
           
         );
-      },
-    );
     
   }
 
-  Widget _loginButton(_bloc){
-    return StreamBuilder(
-      
-      stream: _bloc.validateForm,
-      builder: (context, AsyncSnapshot snapshot) {
+  Widget _loginButton(loginProvider){
+      final loginProvider = Provider.of<LoginProvider>(context);
+
            return FlatButton(
-            onPressed: () => snapshot.hasData?Navigator.pushNamed(context, 'home'):null,
+            onPressed: () {
+                loginProvider.validatePassword(loginProvider.getPassword.value);
+
+                loginProvider.getSuccesfullLogin&&loginProvider.getUsername.value!=null?Navigator.pushNamed(context, 'home'):null;
+              },
+            
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -180,12 +176,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
               ),
               child: Text("LOGIN", style: TextStyle(color: Colors.white),),
       ));
-      });
+      }
    
 
    
   }
-}
+
 
    
 
