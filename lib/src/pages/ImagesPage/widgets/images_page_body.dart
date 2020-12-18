@@ -1,18 +1,18 @@
-import 'package:ejercicio_urbetrack/src/pages/HomePage/home_controller.dart';
+import 'package:ejercicio_urbetrack/src/pages/ImagesPage/images_controller.dart';
 import 'package:ejercicio_urbetrack/src/models/images_model.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 
 
-class HomePageBody extends StatelessWidget {
-  const HomePageBody({
+class ImagesPageBody extends StatelessWidget {
+  const ImagesPageBody({
     Key key,
     @required this.homeController,
     @required TextStyle titleStyle,
     @required MediaQueryData screenSize,
   }) : _titleStyle = titleStyle, _screenSize = screenSize, super(key: key);
 
-  final HomeController homeController;
+  final ImagesController homeController;
   final TextStyle _titleStyle;
   final MediaQueryData _screenSize;
 

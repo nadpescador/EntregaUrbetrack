@@ -1,9 +1,9 @@
 import 'package:ejercicio_urbetrack/src/blocs/theme_controller.dart';
-import 'package:ejercicio_urbetrack/src/pages/HomePage/home_controller.dart';
+import 'package:ejercicio_urbetrack/src/pages/ImagesPage/images_controller.dart';
+import 'package:ejercicio_urbetrack/src/pages/ImagesPage/images_page.dart';
 import 'package:ejercicio_urbetrack/src/pages/LoginPage/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'src/pages/HomePage/home_page.dart';
 import 'src/pages/LoginPage/login_page.dart';
 
 
@@ -24,7 +24,7 @@ final theme = ThemeController(ThemeData(), "Dark");
         ChangeNotifierProvider(
           create: (context) => LoginController()),
         ChangeNotifierProvider(
-          create: (context)=> HomeController()),
+          create: (context)=> ImagesController()),
         ChangeNotifierProvider(
           create: (_)=> ThemeController(ThemeData.light(), "Cambiar a modo oscuro"),)
         ],);
@@ -42,7 +42,7 @@ final theme = ThemeController(ThemeData(), "Dark");
                 debugShowCheckedModeBanner: false,
                 routes: {
                   'login' : (BuildContext context) => LoginPage(),
-                  'home'  : (BuildContext context) => HomePage(),
+                  'home'  : (BuildContext context) => ImagesPage(),
                 },
             theme: theme.getTheme(),
             );

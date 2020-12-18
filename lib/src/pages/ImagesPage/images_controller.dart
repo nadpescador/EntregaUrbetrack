@@ -2,7 +2,7 @@ import 'package:ejercicio_urbetrack/src/api/picsum_api.dart';
 import 'package:ejercicio_urbetrack/src/models/images_model.dart';
 import 'package:flutter/material.dart';
 
-class HomeController extends ChangeNotifier {
+class ImagesController extends ChangeNotifier {
 
   var picsumApi = new PicsumApi();
 
