@@ -148,6 +148,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
         return Container(
           padding: EdgeInsets.all( 20.0),
           child: TextField(
+            keyboardType: TextInputType.number,
             obscureText: true,
             maxLength: 10,
             onChanged: (password) => {

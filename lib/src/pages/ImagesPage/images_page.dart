@@ -22,7 +22,7 @@ import 'package:provider/provider.dart';
           minimum: EdgeInsets.only(top: 35),
           child: Scaffold(
             appBar: AppBar(
-              title: Text("Urbetrack APP"),
+              title: Text("Urbetrack Demo APP"),
               centerTitle: true,
               backgroundColor: Colors.deepPurple,
             ),
