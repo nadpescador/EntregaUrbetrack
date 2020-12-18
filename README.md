@@ -1,6 +1,6 @@
 # Ejercicio_urbetrack
 
-Un proyecto para la entrega a Urbetrack.
+Un proyecto para la entrega a Urbetrack, por Santiago Calvi.
 
 ## Detalles
 
