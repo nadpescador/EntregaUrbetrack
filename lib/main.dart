@@ -1,10 +1,10 @@
-import 'package:ejercicio_urbetrack/src/blocs/home_provider.dart';
-import 'package:ejercicio_urbetrack/src/blocs/login_provider.dart';
-import 'package:ejercicio_urbetrack/src/blocs/theme_changer_provider.dart';
+import 'package:ejercicio_urbetrack/src/blocs/theme_controller.dart';
+import 'package:ejercicio_urbetrack/src/pages/HomePage/home_controller.dart';
+import 'package:ejercicio_urbetrack/src/pages/LoginPage/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'src/pages/home_page.dart';
-import 'src/pages/login_page.dart';
+import 'src/pages/HomePage/home_page.dart';
+import 'src/pages/LoginPage/login_page.dart';
 
 
 
@@ -14,7 +14,7 @@ void main(){
 
 class MyApp extends StatelessWidget {
 
-final theme = ThemeChanger(ThemeData(), "Dark");
+final theme = ThemeController(ThemeData(), "Dark");
 
   @override
   Widget build (BuildContext context){
@@ -22,11 +22,11 @@ final theme = ThemeChanger(ThemeData(), "Dark");
       child:  MaterialAppTheme(),
       providers: [
         ChangeNotifierProvider(
-          create: (context) => LoginProvider()),
+          create: (context) => LoginController()),
         ChangeNotifierProvider(
-          create: (context)=> HomeProvider()),
+          create: (context)=> HomeController()),
         ChangeNotifierProvider(
-          create: (_)=> ThemeChanger(ThemeData.light(), "Light"),)
+          create: (_)=> ThemeController(ThemeData.light(), "Light"),)
         ],);
   }
 }
@@ -35,7 +35,7 @@ final theme = ThemeChanger(ThemeData(), "Dark");
       @override
         Widget build(BuildContext context) {
 
-          final theme = Provider.of<ThemeChanger>(context);
+          final theme = Provider.of<ThemeController>(context);
 
             return MaterialApp(
                 home: LoginPage(),

@@ -2,9 +2,13 @@ import 'package:ejercicio_urbetrack/src/api/picsum_api.dart';
 import 'package:ejercicio_urbetrack/src/models/images_model.dart';
 import 'package:flutter/material.dart';
 
-class HomeProvider extends ChangeNotifier {
+class HomeController extends ChangeNotifier {
 
-  var picsumApi = new PicsumApi();
+  var _picsumApi = new PicsumApi();
+  int _lastItem = 0;
+  List<int> _listNumbers = new List();
+
+
 
 
   //DISABLE BACKBUTTON
@@ -26,14 +30,12 @@ class HomeProvider extends ChangeNotifier {
 
   Future <List<ImagesModel>> getPics() {
     try{
-      return picsumApi.getData();
+      return _picsumApi.getData();
     } catch (e){
       return Future.value([]);
     }
   }
 
 
-
-
-
 }
+

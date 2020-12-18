@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 
 
-class ThemeChanger with ChangeNotifier{
+class ThemeController with ChangeNotifier{
 
 ThemeData _themeData;
-String _darkLight = "Light";
+String _darkLight = "Lightt";
 
-ThemeChanger(this._themeData, this._darkLight);
+ThemeController(this._themeData, this._darkLight);
 
   getTheme () {
   return _themeData;
@@ -21,12 +21,12 @@ void setTheme(ThemeData data){
   void changeDarkAndWhite(context){
      if(_themeData == ThemeData.light()){
          _themeData = ThemeData.dark();
-         _darkLight = "Dark";
+         _darkLight = "Cambiar a modo claro";
          print("Deberia ser negro ahora");
        } else if(_themeData==ThemeData.dark()){
          _themeData = ThemeData.light();
          print("Deberia ser blanco ahora");
-         _darkLight = "Light";
+         _darkLight = "Cambiar a modo oscuro";
        }
        notifyListeners();
   }
@@ -34,4 +34,12 @@ void setTheme(ThemeData data){
 get darkLight{
   return _darkLight;
 }
+
+void setDarkLight(String darklight){
+  _darkLight=darklight;
+  notifyListeners();
+}
+
+
+
 }

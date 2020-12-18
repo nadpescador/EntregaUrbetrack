@@ -1,6 +1,5 @@
 import 'dart:ui';
-
-import 'package:ejercicio_urbetrack/src/blocs/login_provider.dart';
+import 'package:ejercicio_urbetrack/src/pages/LoginPage/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +52,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
 
-  final loginProvider = Provider.of<LoginProvider>(context); 
+  final loginProvider = Provider.of<LoginController>(context); 
   print(loginProvider.getUsername.value);
   print(loginProvider.getPassword.value);
   print(loginProvider.getSuccesfullLogin);
@@ -168,7 +167,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   }
 
   Widget _loginButton(loginProvider){
-    final loginProvider = Provider.of<LoginProvider>(context);
+    final loginProvider = Provider.of<LoginController>(context);
            return FlatButton(
             onPressed: () {
                 loginProvider.validatePassword(loginProvider.getPassword.value);

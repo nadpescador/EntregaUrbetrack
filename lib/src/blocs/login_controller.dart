@@ -3,7 +3,7 @@
 import 'package:ejercicio_urbetrack/src/models/login_validation_model.dart';
 import 'package:flutter/material.dart';
 
-class LoginProvider with ChangeNotifier {
+class LoginController with ChangeNotifier {
 
   LoginValidationModel _username = LoginValidationModel(null, null);
   LoginValidationModel _password = LoginValidationModel(null, null);
