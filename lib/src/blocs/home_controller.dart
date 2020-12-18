@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 class HomeController extends ChangeNotifier {
 
   var _picsumApi = new PicsumApi();
-  int _lastItem = 0;
-  List<int> _listNumbers = new List();
 
 
 

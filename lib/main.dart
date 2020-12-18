@@ -26,7 +26,7 @@ final theme = ThemeController(ThemeData(), "Dark");
         ChangeNotifierProvider(
           create: (context)=> HomeController()),
         ChangeNotifierProvider(
-          create: (_)=> ThemeController(ThemeData.light(), "Light"),)
+          create: (_)=> ThemeController(ThemeData.light(), "Cambiar a modo oscuro"),)
         ],);
   }
 }

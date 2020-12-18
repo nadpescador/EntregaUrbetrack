@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ThemeController with ChangeNotifier{
 
 ThemeData _themeData;
-String _darkLight = "Lightt";
+String _darkLight;
 
 ThemeController(this._themeData, this._darkLight);
 
