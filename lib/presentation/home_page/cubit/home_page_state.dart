@@ -1,13 +1,15 @@
-part of 'home_page_cubit.dart';
+import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ejercicio_urbetrack/models/images_model.dart';
 
-@immutable
-abstract class HomePageState {}
+part 'home_page_state.freezed.dart';
 
-class HomePageInitial extends HomePageState {}
+@freezed
+abstract class HomePageState with _$HomePageState {
+  const factory HomePageState.initial() = HomePageInitialState;
 
-class HomePageLoading extends HomePageState {}
+  const factory HomePageState.loading() = HomePageLoadingState;
 
-class HomePageLoaded extends HomePageState {
-  HomePageLoaded({@required this.images});
-  final List<ImagesModel> images;
+  const factory HomePageState.loaded(List<ImagesModel> images) =
+      HomePageLoadedState;
 }
